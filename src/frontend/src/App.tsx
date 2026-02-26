@@ -19,12 +19,10 @@ import { SiWhatsapp } from "react-icons/si";
 const PHONE = "+91 99347 56863";
 const PHONE_HREF = "tel:+919934756863";
 const WHATSAPP_HREF = "https://wa.me/919934756863";
-const MAPS_HREF =
-  "https://www.google.com/maps/search/?api=1&query=Bhootnath+Road+Patna+Bihar";
+const MAPS_HREF = "https://maps.app.goo.gl/jjmVJ1PdF9eMyxzz7";
 const MAPS_EMBED =
-  "https://maps.google.com/maps?q=Bhootnath+Road+Patna+Bihar&output=embed";
-const GOOGLE_REVIEWS_HREF =
-  "https://www.google.com/maps/search/?api=1&query=ABC+Book+Center+Bhootnath+Road+Patna";
+  "https://maps.google.com/maps?q=ABC+Book+Center,+Bhootnath+Road,+Bahadurpur+Housing+Colony,+Mahatma+Gandhi+Nagar,+Patna,+Bihar+800026&output=embed";
+const GOOGLE_REVIEWS_HREF = "https://maps.app.goo.gl/jjmVJ1PdF9eMyxzz7";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
