@@ -1,42 +1,27 @@
-# ABC Book Center Website
+# ABC Book Center
 
 ## Current State
-New project. No existing pages or backend.
+The contact form (Name, Phone, Book Requirement) submits data to the backend via `useSubmitForm`. On success, it shows a toast notification. The WhatsApp button is a static link that opens WhatsApp with no pre-filled message.
 
 ## Requested Changes (Diff)
 
 ### Add
-- Full multi-section single-page website for ABC Book Center, Patna
-- Hero section with headline, subheadline, and CTA buttons (Call Now, WhatsApp, Get Directions)
-- "Why Choose Us" section with 5 icon-based trust points and scroll animations
-- Product Categories section with interactive clickable cards (6 categories)
-- Reviews/testimonials section with star rating and slider
-- Call-to-Action banner section
-- About section with store info and map embed
-- Contact page section with click-to-call, WhatsApp link, contact form (Name, Phone, Book Requirement)
-- Sticky mobile bottom bar with Call and WhatsApp buttons
-- Floating WhatsApp button
-- FAQ accordion section
-- SEO meta tags and local business schema markup
+- After a successful form submission, automatically open WhatsApp with a pre-filled message containing the customer's Name, Phone, and Book Requirement so the store owner receives the inquiry directly on WhatsApp.
 
 ### Modify
-- None
+- `handleSubmit` in `ContactSection`: after `submitForm.mutateAsync` succeeds, construct a WhatsApp URL with the form data encoded as a message and open it in a new tab.
+- Success toast message to reflect that WhatsApp will open with their details.
 
 ### Remove
-- None
+- Nothing removed.
 
 ## Implementation Plan
-1. Backend: contact form submission storage (name, phone, book requirement)
-2. Frontend: build full single-page website with all sections, responsive layout
-3. Images: generate hero banner and product category icons
-4. Integrate contact form with backend
-5. Add scroll animations, hover effects, sticky CTA bar
+1. In `handleSubmit`, after successful backend submission, build a WhatsApp message string like:
+   `New Enquiry from ABC Book Center Website\nName: {name}\nPhone: {phone}\nBook Requirement: {bookRequirement}`
+2. URL-encode the message and open `https://wa.me/919934756863?text=<encoded_message>` in a new tab.
+3. Update the success toast to say "Enquiry sent! WhatsApp is opening with your details."
 
 ## UX Notes
-- Color scheme: Deep Blue (#1E3A8A) primary, Sky Blue (#3B82F6) accent, White background, Green for WhatsApp CTAs
-- Typography: Poppins/Inter style, bold headlines
-- Mobile-first, under 3s load
-- Friendly, student-focused, local tone
-- Phone: +91 99347 56863
-- Location: Bhootnath Road, Bahadurpur Housing Colony, Patna, Bihar 800026
-- Rating: 4.0 stars, 350+ reviews
+- WhatsApp opens in a new tab so the customer stays on the website.
+- The message is pre-filled so the owner immediately sees the inquiry details.
+- This works on both mobile (opens WhatsApp app) and desktop (opens WhatsApp Web).

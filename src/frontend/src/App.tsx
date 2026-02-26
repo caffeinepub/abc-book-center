@@ -667,9 +667,13 @@ function ContactSection() {
     }
     try {
       await submitForm.mutateAsync({ name, phone, bookRequirement });
-      toast.success("Your enquiry has been submitted! We'll reach out soon.", {
+      toast.success("Enquiry sent! Opening WhatsApp with your details...", {
         duration: 5000,
       });
+      // Open WhatsApp with pre-filled message containing enquiry details
+      const message = `New Enquiry from ABC Book Center Website\n\nName: ${name.trim()}\nPhone: ${phone.trim()}\nBook Requirement: ${bookRequirement.trim()}`;
+      const waUrl = `https://wa.me/919934756863?text=${encodeURIComponent(message)}`;
+      window.open(waUrl, "_blank", "noopener,noreferrer");
       setName("");
       setPhone("");
       setBookRequirement("");
