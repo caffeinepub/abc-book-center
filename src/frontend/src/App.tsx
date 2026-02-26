@@ -286,7 +286,7 @@ function HeroSection() {
         </div>
 
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.08] tracking-tight mb-5 animate-fade-up">
-          Patna's Trusted
+          India's Trusted
           <br />
           <span className="text-gold font-extrabold" style={{ textShadow: "0 2px 20px oklch(0.75 0.16 72 / 0.45)" }}>
             Book & Stationery
