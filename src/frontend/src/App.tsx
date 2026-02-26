@@ -104,11 +104,11 @@ const FAQS = [
   },
   {
     q: "What are your store timings?",
-    a: "We are open Monday to Saturday, 9 AM to 7 PM. We're closed on Sundays and national holidays.",
+    a: "We are open all 7 days a week, 9 AM to 10 PM.",
   },
   {
     q: "Can I place an order on WhatsApp?",
-    a: "Yes! WhatsApp us at +91 99347 56863 with your requirement and we'll confirm availability and arrange pick-up or delivery.",
+    a: "Yes! WhatsApp us at +91 99347 56863 with your requirement and we'll confirm availability. Please note: for now we are unable to offer pick-up or delivery.",
   },
 ];
 
@@ -597,7 +597,7 @@ function AboutSection() {
             </div>
             <div className="grid grid-cols-3 gap-6 mt-8">
               {[
-                { val: "350+", label: "Happy Customers" },
+                { val: "5k+", label: "Happy Customers" },
                 { val: "4.0★", label: "Google Rating" },
                 { val: "1000+", label: "Book Titles" },
               ].map((stat) => (
@@ -665,20 +665,25 @@ function ContactSection() {
       toast.error("Please fill in all fields.");
       return;
     }
+
+    // Always open WhatsApp first — so the enquiry reaches you even if backend has issues
+    const message = `New Enquiry from ABC Book Center Website\n\nName: ${name.trim()}\nPhone: ${phone.trim()}\nBook Requirement: ${bookRequirement.trim()}`;
+    const waUrl = `https://wa.me/917488871989?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, "_blank", "noopener,noreferrer");
+
+    toast.success("Opening WhatsApp with your enquiry details...", {
+      duration: 5000,
+    });
+
+    setName("");
+    setPhone("");
+    setBookRequirement("");
+
+    // Also save to backend (silent — does not affect WhatsApp delivery)
     try {
       await submitForm.mutateAsync({ name, phone, bookRequirement });
-      toast.success("Enquiry sent! Opening WhatsApp with your details...", {
-        duration: 5000,
-      });
-      // Open WhatsApp with pre-filled message containing enquiry details
-      const message = `New Enquiry from ABC Book Center Website\n\nName: ${name.trim()}\nPhone: ${phone.trim()}\nBook Requirement: ${bookRequirement.trim()}`;
-      const waUrl = `https://wa.me/919934756863?text=${encodeURIComponent(message)}`;
-      window.open(waUrl, "_blank", "noopener,noreferrer");
-      setName("");
-      setPhone("");
-      setBookRequirement("");
     } catch {
-      toast.error("Something went wrong. Please call us directly.");
+      // Backend save failed, but WhatsApp message already sent — no action needed
     }
   };
 
